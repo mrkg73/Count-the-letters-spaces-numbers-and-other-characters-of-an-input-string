@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.function.Consumer;
+
 
 public class Main
 {
@@ -6,20 +8,22 @@ public class Main
     {
         Scanner sc= new Scanner(System.in);
         System.out.println("Please enter your text");
-        String nam= sc.nextLine();
-        int size=nam.length();
+
+
 
         int [] count= new int[4];
 
-        for (int i=0; i<size; i++)
-        {
-            char chk= nam.charAt(i);
+       Consumer<String> run= ch-> {  ch.chars().forEach(s->
+            {
+          if(Character.isLetter(s)) count [0]++;
+            else if(Character.isWhitespace(s)) count [1]++;
+            else if(Character.isDigit(s)) count [2]++;
+            else count[3]++;
 
-              if(Character.isLetter(chk)) count [0]++;
-              else if(Character.isWhitespace(chk)) count [1]++;
-              else if(Character.isDigit(chk)) count [2]++;
-              else count[3]++;
-        }
+            });};
+
+            run.accept(sc.nextLine());
+
         System.out.println("The String has: " + count[0] +" Letters");
         System.out.println("The String has: " + count[1] +" spaces");
         System.out.println("The String has: " + count[2] +" numbers");
