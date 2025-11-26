@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.function.Consumer;
 
 
 public class Main
@@ -8,21 +7,21 @@ public class Main
     {
         Scanner sc= new Scanner(System.in);
         System.out.println("Please enter your text");
-
+        String nam= sc.nextLine();
 
 
         int [] count= new int[4];
 
-       Consumer<String> run= ch-> {  ch.chars().forEach(s->
+           nam.chars().forEach(s->
             {
           if(Character.isLetter(s)) count [0]++;
             else if(Character.isWhitespace(s)) count [1]++;
             else if(Character.isDigit(s)) count [2]++;
             else count[3]++;
 
-            });};
+            }) ;
 
-            run.accept(sc.nextLine());
+
 
         System.out.println("The String has: " + count[0] +" Letters");
         System.out.println("The String has: " + count[1] +" spaces");
